@@ -1,5 +1,6 @@
 import React, { useReducer, useState } from 'react';
 import "bootstrap/dist/css/bootstrap.min.css";
+import Event from '../components/Event';
 import reducer from '../reducers';
 
 const App = () => {
@@ -19,8 +20,6 @@ const App = () => {
     setTitle('');
     setBody('');
   }
-
-  console.log({state});
   
   return (
     <div className='container-fluid'>
@@ -50,7 +49,7 @@ const App = () => {
           </tr>
         </thead>
         <tbody>
-
+          { state.map((event, index) => (<Event key={index} event={event} dispatch={dispatch} />))}
         </tbody>
       </table>
     </div>
@@ -62,6 +61,11 @@ const App = () => {
 // イベントハンドラーで状態を変える：onChange={e => setTitle(e.target.value)
 // inputタグの中身が変わるたびに、新たな状態をstateとして反映する
 // e.target.valueは慣用句
+
+// Each child in a list should have a unique "key" prop.
+// エラー：ユニークなkeyを持たせないといけないよ
+// mapで<tr>を繰り返す → 他にも<tr>があったら困る! → だから独自の'key'を設定する必要がある
+// mapの第2引数にはユニークな属性としてindexが渡ってくる → ユニークなkeyを属性に与える <tr key={index}>
 
 
 export default App;
