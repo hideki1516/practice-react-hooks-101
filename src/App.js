@@ -1,23 +1,24 @@
-import React , { useState } from 'react';
+import React , { useEffect, useState } from 'react';
 
 const App = props => {
-  // オブジェクトをuseStateの引数に設定できる
   const [state, setState] = useState(props);
-
-  // 初期化処理を1つにまとめられる
-  // const reset = () => setState(props);
-
-  // state. を省略するために分割代入
   const { name, price } = state;
 
-  // const [name, setName] = useState(props.name);
-  // const [price, setPrice] = useState(props.price);
+  // * useEffect：レンダリング（return()）のあとに実行されている
+  useEffect(() => {
+    console.log('This is like componentDidMount or componentDidUpdate.');
+  })
 
-  // const reset = () => {
-  //   setPrice(props.price);
-  //   setName(props.name);
-  // };
-  
+  // * 初回レンダリングのみ実行したい：第2引数に[]を入力
+  useEffect(() => {
+    console.log('This is like componentDidMount.');
+  }, [])
+
+  // * 変更時のみレンダリングしたい：第2引数[]にパラメータを入力
+  useEffect(() => {
+    console.log('This callback is for name only.');
+  }, [name])
+
   return (
     <>
       <p>現在の『{name}』は、{price}円です。</p>
@@ -28,13 +29,6 @@ const App = props => {
     </>
   );
 }
-
-// * setState({...state, name: e.target.value})
-// オブジェクトが代入された変数stateをスプレッド構文で展開した上で、
-// 上書きされる値だけ取得する
-
-// * state変数にpropsオブジェクトを代入
-// → state.name , state.priceで表示できる
 
 App.defaultProps = {
   name: '',
