@@ -33,8 +33,8 @@
 //     },
 // ]
 
-const event = (state = [], action) => {
-    switch(action,type) {
+const events = (state = [], action) => {
+    switch(action.type) {
         case 'CREATE_EVENT':
             const event = { title: action.title, body: action.body };
             const length = state.length;
