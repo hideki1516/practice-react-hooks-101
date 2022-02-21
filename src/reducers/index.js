@@ -43,8 +43,8 @@ const events = (state = [], action) => {
         case 'DELETE_EVENT':
             // action.idと等しくないもの＝削除したいID
             return state.filter(event => event.id !== action.id);
-        case 'DELETE_ALL_EVENT':
-            return [];
+        case 'DELETE_ALL_EVENTS':
+            return []; // 空配列を渡して全ての入力削除する
         default: 
             return state;
     }
