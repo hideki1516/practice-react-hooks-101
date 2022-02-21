@@ -41,7 +41,11 @@ const events = (state = [], action) => {
             const id = length === 0 ? 1 : state[length - 1].id + 1;
             return [...state, { id, ...event }];
         case 'DELETE_EVENT':
-            // action.idと等しくないもの＝削除したいID
+            // filter : 要素が詰まった配列から、条件にあった要素を取り出して新しい配列を作成する
+            // stateを1件ずつfilter()でチェック
+            // →event.idで取り出す
+            // →actionで渡ってくるidと等しくないものだけを抽出する
+            // 等しくない=削除したくないid を新しい配列にして表示する（等しいもの＝削除対象）
             return state.filter(event => event.id !== action.id);
         case 'DELETE_ALL_EVENTS':
             return []; // 空配列を渡して全ての入力削除する
