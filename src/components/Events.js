@@ -3,9 +3,6 @@ import Event from './Event';
 import AppContext from '../contexts/AppContext';
 
 const Events = () => {
-  // useContext()でproviderで渡した引数（value）を受け取れる
-  // Providerでwrapされた任意のコンポーネントをpropsを介さずに（バケツリレーせずに）、
-  // 共有されたものをConsumer側で参照できる
   const { state } = useContext(AppContext);
 
     return (
@@ -21,7 +18,7 @@ const Events = () => {
             </tr>
           </thead>
           <tbody>
-            { state.map((event, index) => (<Event key={index} event={event} />))}
+            { state.events.map((event, index) => (<Event key={index} event={event} />))}
           </tbody>
         </table>
       </>
