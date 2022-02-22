@@ -1,9 +1,15 @@
-import React from "react";
+import React, { useContext } from "react";
 import Event from './Event';
+import AppContext from '../contexts/AppContext';
 
 const Events = ({ state, dispatch }) => {
+  // Providerでwrapされた任意のコンポーネントをpropsを介さずに（バケツリレーせずに）、
+  // 共有されたものをConsumer側で参照できる
+  const value = useContext(AppContext);
+
     return (
       <>
+        {/* <div>{value}</div> */}
         <h4>イベント一覧</h4>
         <table className='table table-hover'>
           <thead>
