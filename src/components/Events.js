@@ -2,14 +2,14 @@ import React, { useContext } from "react";
 import Event from './Event';
 import AppContext from '../contexts/AppContext';
 
-const Events = ({ state, dispatch }) => {
+const Events = () => {
+  // useContext()でproviderで渡した引数（value）を受け取れる
   // Providerでwrapされた任意のコンポーネントをpropsを介さずに（バケツリレーせずに）、
   // 共有されたものをConsumer側で参照できる
-  const value = useContext(AppContext);
+  const { state } = useContext(AppContext);
 
     return (
       <>
-        {/* <div>{value}</div> */}
         <h4>イベント一覧</h4>
         <table className='table table-hover'>
           <thead>
@@ -21,7 +21,7 @@ const Events = ({ state, dispatch }) => {
             </tr>
           </thead>
           <tbody>
-            { state.map((event, index) => (<Event key={index} event={event} dispatch={dispatch} />))}
+            { state.map((event, index) => (<Event key={index} event={event} />))}
           </tbody>
         </table>
       </>

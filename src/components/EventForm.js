@@ -1,11 +1,13 @@
-import React, { useState } from "react";
+import React, { useContext, useState } from "react";
 import {
     CREATE_EVENT,
     DELETE_ALL_EVENTS
-} from '../actions'
+} from '../actions';
+import AppContext from "../contexts/AppContext";
 
-const EventForm = ({ state, dispatch }) => {
-    // const [state, dispatch] = useReducer(reducer, []);
+const EventForm = () => {
+    // useContext()でproviderで渡した引数（value）を受け取れる
+    const { state, dispatch } = useContext(AppContext);
     const [title, setTitle] = useState(''); // titleの状態管理
     const [body, setBody] = useState(''); // bodyの状態管理
 
